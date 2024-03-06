@@ -62,13 +62,6 @@ query {
       
 
 
-genericCt
-
-{space_id: vkj9mhiseih4} string
-{entry_id: 1mZCWmAeYZaL27gg29Ni1d} string
-{access_token: KwkgLe9_HWcFGKniS_vm4Lx0BW_d4-Fi4BdAzyLZMHA} string
-
-
 
 
 
