@@ -5,7 +5,7 @@ import {useTwitchAPI,useTwitchEndpoint} from "../hooks/useTwitchAPI";
 
 function Twitchtest() {
   const [allDone, setAllDone] = useState(false);
-  const [games, setGames] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [error, loading, data] = useTwitchAPI();
   const allData = []
 
@@ -14,7 +14,8 @@ function Twitchtest() {
 
       // fields id,name,total_rating,summary,cover,storyline,first_release_date,artworks,game_modes,genres,involved_companies,platforms,screenshots,slug,themes,url,videos,websites
       
-      if (data&&(allDone === false)){
+      if (data&&(isProcessing === false)){
+        setIsProcessing(true)
         const endpoint = "genres"
         const body = "fields *; limit 51;"
           
@@ -22,7 +23,7 @@ function Twitchtest() {
           const sourceData = ["cover","url"];
           const source = ["covers","url"];
         
-          const dataBig = await data.map(async (dataSet, index) => {
+          const dataBig = await Promise.all(data.map(async (dataSet, index) => {
             // await Promise.all(data.map(async (dataSet, index) => {
             let modifiedData;
             if (dataSet.cover)
@@ -99,8 +100,9 @@ function Twitchtest() {
             }
             return dataSet
 
-          });
-           console.log("dataBig",dataBig)
+          }));
+          
+          console.log("dataBig",dataBig)
 
 
         // }));
