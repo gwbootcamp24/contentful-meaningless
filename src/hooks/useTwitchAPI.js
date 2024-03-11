@@ -48,7 +48,7 @@ export function useTwitchAPI(query) {
           'Client-ID': '5azs5nrj0o6l1qwezsjj147q3g9h06',
           'Authorization': 'Bearer fhzb0aha100e1lylywywbe5585ehe1',
         },
-        body: "fields *, url, cover;where rating > 75; limit 20;"
+        body: "fields id,name,total_rating,summary,cover,storyline,first_release_date,artworks,game_modes,genres,involved_companies,platforms,screenshots,slug,themes,url,videos,websites;where rating > 80; limit 20;"
     })
     if (!res.ok) throw new Error(res.statusText);
     const data = await res.json();

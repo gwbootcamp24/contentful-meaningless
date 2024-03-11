@@ -2,6 +2,30 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import useContentful from "../hooks/useContentful";
 import {useTwitchAPI,useTwitchEndpoint} from "../hooks/useTwitchAPI";
+import { RateLimiter } from 'limiter'
+class LimiterLibraryRateLimiter {
+  constructor ({ maxRequests, maxRequestWindowMS }) {
+    this.maxRequests = maxRequests
+    this.maxRequestWindowMS = maxRequestWindowMS
+    this.limiter = new RateLimiter(this.maxRequests, this.maxRequestWindowMS, false)
+  }
+
+  async acquireToken (fn) {
+    if (this.limiter.tryRemoveTokens(1)) {
+      await nextTick()
+      return fn()
+    } else {
+      await sleep(this.maxRequestWindowMS)
+      return this.acquireToken(fn)
+    }
+  }
+}
+
+
+function sleep (milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds))
+}
+
 
 function Twitchtest() {
   const [allDone, setAllDone] = useState(false);
@@ -20,13 +44,136 @@ function Twitchtest() {
         const body = "fields *; limit 51;"
           
         async function printFiles() {
-          const sourceData = ["cover","url"];
-          const source = ["covers","url"];
-        
+ 
+
+          const modifiedDataHackCover = []
+          const modifiedDataHackGenres = []
+
+
+          for (const dataSet of data) {
+            let modifiedData;
+
+
+
+            if ( dataSet.cover) {  
+
+
+              console.log("Hi", dataSet)
+              const sourceData = ["cover","url"];
+              const source = ["covers","url"];
+              const endpoint = source[0]
+              const body = `fields *; where id = ${dataSet.cover};limit 50;`
+
+              const  dataPromise  = await useTwitchEndpoint(endpoint, body);
+              if(dataPromise)
+              {
+                const myidx = dataPromise.findIndex(x => x.id === dataSet[sourceData[0]]);
+                const changedField = dataPromise[dataPromise.findIndex(x => x.id === dataSet[sourceData[0]])][source[1]]
+                modifiedData = {...dataSet,  [sourceData[0]]: changedField}
+              }
+            }
+
+
+            if (dataSet.genres)
+            {  
+
+
+
+ 
+              const sourceData = ["genres","name"];
+              const source = ["genres","name"];
+              const endpoint = source[0]
+              const body = "fields *; limit 51;"
+      
+              const  dataPromise  = await useTwitchEndpoint(endpoint, body);
+              if(dataPromise)
+              {
+                const myidx = dataPromise.findIndex(x => x.id === dataSet[sourceData[0]]);
+                // const changedField = dataPromise[dataPromise.findIndex(x => x.id === dataSet[sourceData[0]])][source[1]]
+
+                const changedField = dataSet[sourceData[0]]?.map((g)=>{
+                  return dataPromise[dataPromise.findIndex(x => x.id === g)][source[1]];
+                })
+
+
+                modifiedData = {...modifiedData,  [sourceData[0]]: changedField}
+
+              }
+            }
+
+            if (dataSet.artworks)
+            {  
+
+
+
+ 
+              const sourceData = ["artworks","url"];
+              const source = ["artworks","url"];
+              const endpoint = source[0]
+              const body = `fields *;where game=${dataSet.id};`
+      
+              const  dataPromise  = await useTwitchEndpoint(endpoint, body);
+              if(dataPromise)
+              {
+                // const changedField = dataPromise[dataPromise.findIndex(x => x.id === dataSet[sourceData[0]])][source[1]]
+
+                const changedField = dataSet[sourceData[0]]?.map((g)=>{
+                  return dataPromise[dataPromise.findIndex(x => x.id === g)][source[1]];
+                })
+
+
+                modifiedData = {...modifiedData,  [sourceData[0]]: changedField}
+
+              }
+            }
+
+            if (dataSet.hasOwnProperty('screenshots')&&dataSet.screenshots.length>0)
+            {  
+
+
+
+ 
+              const sourceData = ["screenshots","url"];
+              const source = ["screenshots","url"];
+              const endpoint = source[0]
+              const body = `fields *;where game=${dataSet.id};`
+      
+              const  dataPromise  = await useTwitchEndpoint(endpoint, body);
+              if(dataPromise)
+              {
+                // const changedField = dataPromise[dataPromise.findIndex(x => x.id === dataSet[sourceData[0]])][source[1]]
+
+                const changedField = dataSet[sourceData[0]]?.map((g)=>{
+                  console.log("g",g);
+                  console.log("dataPromise",dataPromise.findIndex(x => x.id === g));
+                  if (dataPromise.findIndex(x => x.id === g) == -1)
+                  return null
+                  else return dataPromise[dataPromise.findIndex(x => x.id === g)]??dataPromise[dataPromise.findIndex(x => x.id === g)][source[1]];
+                })
+
+
+                modifiedData = {...modifiedData,  [sourceData[0]]: changedField}
+
+              }
+            }
+
+
+            await sleep(600)
+
+
+
+            modifiedDataHackCover.push(modifiedData)
+
+
+          }
+          console.log(modifiedDataHackCover)
+
+
+
           const dataBig = await Promise.all(data.map(async (dataSet, index) => {
             // await Promise.all(data.map(async (dataSet, index) => {
             let modifiedData;
-            if (dataSet.cover)
+            if (0&&dataSet.cover)
             {  
               const sourceData = ["cover","url"];
               const source = ["covers","url"];
@@ -50,7 +197,7 @@ function Twitchtest() {
               }
             }
 
-            if (dataSet.genres)
+            if (0&&dataSet.genres)
             {  
 
 
@@ -98,6 +245,7 @@ function Twitchtest() {
                 // setAllDone(true);
               }
             }
+            
             return dataSet
 
           }));
@@ -107,7 +255,9 @@ function Twitchtest() {
 
         // }));
         }
-        printFiles()
+
+        const throttle = setTimeout(printFiles,2000)
+        // printFiles()
 
 
 
