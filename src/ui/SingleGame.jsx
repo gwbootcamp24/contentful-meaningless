@@ -11,7 +11,7 @@ export default function SingleGame({game}) {
 <>
           <p>{id}</p>
           <p>{game.fields.game.name}</p>
-          <img src={game.fields.game.cover} />
+          <img src={game.fields.game.cover.replace('thumb', 'cover_big')} />
           <p>Release: {myDate.toISOString()}</p>
           <ul>{game.fields.game.genres?.map((g) => <li>{g}</li>)}</ul>
 

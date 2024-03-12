@@ -158,7 +158,7 @@ function Twitchtest() {
             }
 
 
-            await sleep(600)
+            await sleep(1000)
 
 
 

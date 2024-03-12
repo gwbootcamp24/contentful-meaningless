@@ -1,4 +1,122 @@
 {
+  "contentTypes": [
+      {
+          "sys": {
+              "space": {
+                  "sys": {
+                      "type": "Link",
+                      "linkType": "Space",
+                      "id": ""
+                  }
+              },
+              "id": "test4",
+              "type": "ContentType",
+              "environment": {
+                  "sys": {
+                      "id": "master",
+                      "type": "Link",
+                      "linkType": "Environment"
+                  }
+              },
+              "createdBy": {
+                  "sys": {
+                      "type": "Link",
+                      "linkType": "User",
+                      "id": ""
+                  }
+              },
+
+              "publishedBy": {
+                  "sys": {
+                      "type": "Link",
+                      "linkType": "User",
+                      "id": ""
+                  }
+              }
+          },
+          "name": "test4",
+          "description": "test json field",
+          "fields": [
+              {
+                  "id": "jsonData",
+                  "name": "json-data",
+                  "type": "Object",
+                  "localized": false,
+                  "required": false,
+                  "validations": [],
+                  "disabled": false,
+                  "omitted": false
+              }
+          ]
+      }
+  ],
+
+  "entries": [
+      {
+          "sys": {
+              "space": {
+                  "sys": {
+                      "type": "Link",
+                      "linkType": "Space",
+                      "id": ""
+                  }
+              },
+              "id": "",
+              "type": "Entry",
+              "environment": {
+                  "sys": {
+                      "id": "master",
+                      "type": "Link",
+                      "linkType": "Environment"
+                  }
+              },
+              "createdBy": {
+                  "sys": {
+                      "type": "Link",
+                      "linkType": "User",
+                      "id": ""
+                  }
+              },
+              "updatedBy": {
+                  "sys": {
+                      "type": "Link",
+                      "linkType": "User",
+                      "id": ""
+                  }
+              },
+              "publishedBy": {
+                  "sys": {
+                      "type": "Link",
+                      "linkType": "User",
+                      "id": ""
+                  }
+              },
+              "contentType": {
+                  "sys": {
+                      "type": "Link",
+                      "linkType": "ContentType",
+                      "id": "test"
+                  }
+              }
+          },
+          "fields": {
+              "jsonData": {
+                  "en-US": {
+                      "userId": 5,
+                      "id": 5,
+                      "title": "interesting",
+                      "body": "stuff"
+                  }
+              }
+          }
+      }
+  ]
+}
+
+
+
+
+{
   "id":364,
   "age_ratings":[
      32153
