@@ -1,8 +1,0 @@
-
-
-
-curl 'https://api.igdb.com/v4/artworks' \
--d 'fields alpha_channel,animated,checksum,game,height,image_id,url,width;where id=5305;' \
--H 'Client-ID: XXXXXXXXXXXXXXXX' \
--H 'Authorization: Bearer YYYYYYYYYYYYYY' \
--H 'Accept: application/json

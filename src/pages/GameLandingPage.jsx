@@ -10,7 +10,7 @@ export default function GameLandingPage() {
   const [isloading, setIsloading] = useState(true);
 
   const {gameId} = useParams();
-  console.log("gameId",gameId)
+  // console.log("gameId",gameId)
 
   const client = createClient({ 
     space: `${import.meta.env.VITE_REACT_APP_SPACE_ID}`, 
@@ -27,7 +27,7 @@ export default function GameLandingPage() {
               await client.getEntry(gameId).then((data) => {
               console.log("data",data)
               setGame(data);
-              console.log("game", data.fields.game)
+              // console.log("game", data.fields.game)
               // const {id, first_release_date, storyline, summary} = game.fields.game
               // console.log(id)
               // console.log("first_release_date",first_release_date)

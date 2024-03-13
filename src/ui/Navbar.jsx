@@ -1,10 +1,27 @@
 import {NavLink} from 'react-router-dom';
 
-function Navbar() {
+function Navbar({gameCategories}) {
+  console.log(gameCategories)
     return (
         <nav>
             <NavLink to='/'>
                 Home
+            </NavLink>
+
+            {gameCategories.map((cat) =>{
+              return(
+          <>
+            <NavLink to={cat}>
+              {cat}
+          </NavLink>
+          </>
+          )
+            }
+
+      )}
+
+            <NavLink to='/'>
+                Adventures
             </NavLink>
         </nav>
     );

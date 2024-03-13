@@ -1,9 +1,9 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { createClient } from 'contentful'; 
 import SingleGame from '../ui/SingleGame';
 
-function Home(props) {
+function Home() {
 
     const [games, setGames] = useState([]);
 
@@ -12,8 +12,6 @@ function Home(props) {
       accessToken: `${import.meta.env.VITE_REACT_APP_CDA_TOKEN}`
     });
 
-    const { gamesCategory } = props
-
     // Funktion zum Fetchen der API von Contentful:
     useEffect(() => {
       async function fetchData() {
@@ -21,9 +19,7 @@ function Home(props) {
           await client.getEntries({content_type: "genericCt"}).then((data) => {
             const filteredData = data.items.reduce((acc, cur)=>
             { 
-              if (!gamesCategory){
-                acc.push(cur)
-              } else if (cur.fields.game.genres.find((g)=>g==gamesCategory)) {
+              if (cur.fields.game.genres.find((g)=>g=='Strategy')) {
                 acc.push(cur)
               }
                 return acc

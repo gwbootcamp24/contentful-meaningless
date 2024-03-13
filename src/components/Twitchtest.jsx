@@ -144,8 +144,8 @@ function Twitchtest() {
                 // const changedField = dataPromise[dataPromise.findIndex(x => x.id === dataSet[sourceData[0]])][source[1]]
 
                 const changedField = dataSet[sourceData[0]]?.map((g)=>{
-                  console.log("g",g);
-                  console.log("dataPromise",dataPromise.findIndex(x => x.id === g));
+                  // console.log("g",g);
+                  // console.log("dataPromise",dataPromise.findIndex(x => x.id === g));
                   if (dataPromise.findIndex(x => x.id === g) == -1)
                   return null
                   else return dataPromise[dataPromise.findIndex(x => x.id === g)]??dataPromise[dataPromise.findIndex(x => x.id === g)][source[1]];
