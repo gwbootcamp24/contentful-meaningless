@@ -22,13 +22,18 @@ function App() {
   ]
   return (
     <>
+
+
+
     <Navbar gameCategories={gameCategories} />
+    <br />
     <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/createGame' element={<CreateEntryTest />} />
-      {gameCategories.map((cat) =>
-        <Route path={cat} element={<Home cat={cat} />} />
-      
+      <Route key="home" path='/' element={<Home />} />
+      <Route key="CreateEntryTest" path='/createGame' element={<CreateEntryTest />} />
+      {gameCategories.map((cat,index) =>
+        
+        <Route key={index} path={cat} element={<Home cat={cat} />} />
+        
       )}
       <Route path='/games/:gameId' element={<GameLandingPage />} />
     </Routes>
@@ -43,3 +48,75 @@ export default App
 
 
  
+{/* <section>
+	<div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="card">
+				<div class="cover item-a">
+					<h1>Little<br/>Bonsai</h1>
+					<span class="price">$79</span>
+					<div class="card-back">
+						<a href="#">Add to cart</a>
+						<a href="#">View detail</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="card">
+				<div class="cover item-b">
+					<h1>Tropical<br/>Leaf</h1>
+					<span class="price">$35</span>
+					<div class="card-back">
+						<a href="#">Add to cart</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="card">
+				<div class="cover item-c">
+					<h1>Marijuana<br/>Chill</h1>
+					<span class="price">$155</span>
+					<div class="card-back">
+						<a href="#">Add to cart</a>
+					</div>
+				</div>
+			</div>
+		</div>
+    <div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="card">
+				<div class="cover item-a">
+					<h1>Little<br/>Bonsai</h1>
+					<span class="price">$79</span>
+					<div class="card-back">
+						<a href="#">Add to cart</a>
+						<a href="#">View detail</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="card">
+				<div class="cover item-b">
+					<h1>Tropical<br/>Leaf</h1>
+					<span class="price">$35</span>
+					<div class="card-back">
+						<a href="#">Add to cart</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="card">
+				<div class="cover item-c">
+					<h1>Marijuana<br/>Chill</h1>
+					<span class="price">$155</span>
+					<div class="card-back">
+						<a href="#">Add to cart</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section> */}

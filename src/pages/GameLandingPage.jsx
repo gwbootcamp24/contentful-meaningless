@@ -54,12 +54,19 @@ export default function GameLandingPage() {
 else{
   return (
 <>
+        <br/>
           <p key={game.fields.game.id}>{game.fields.game.id}</p>
           <p key={game.fields.game.name}>{game.fields.game.name}</p>
-          <img key={game.fields.game.cover} src={game.fields.game.cover.replace('thumb', '1080p')} />
-          {game.fields.game.screenshots?.map((s)=> <img key={s.url} src={s.url.replace('thumb', '1080p')} />)}
+          <div className="mainImage">
+            <img key={game.fields.game.cover} src={game.fields.game.cover.replace('thumb', '1080p')} />
+          </div>
+          <div className="screenshots">
+          {game.fields.game.screenshots?.map((s)=> <div><img key={s.url} src={s.url.replace('thumb', '1080p')} /></div>)}
+          </div>
           <p key={myDate.toISOString().substring(0,10)}>Release: {myDate.toISOString().substring(0,10)}</p>
+          <br/>
           <ul key="wefohiowe">{game.fields.game.genres?.map((g,idx) => <li key={idx}>{g}</li>)}</ul>
+          <br/>
           <p key={game.fields.game.storyline}>{game.fields.game.storyline}</p>
           <p key={game.fields.game.summary}>{game.fields.game.summary}</p>
 

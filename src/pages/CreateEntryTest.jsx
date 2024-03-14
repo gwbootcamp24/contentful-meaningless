@@ -1,12 +1,12 @@
 import { createClient } from 'contentful-management'
 
-// const contentful = require('contentful-management')
 
 export default function CreateEntryTest() {
 
   const contentfulClient = createClient({
     accessToken: import.meta.env.VITE_REACT_APP_CMA_TOKEN || '',
   })
+
   async function POST() {
     try {
 
@@ -14,19 +14,26 @@ export default function CreateEntryTest() {
   
       const space = await contentfulClient.getSpace(import.meta.env.VITE_REACT_APP_SPACE_ID || '')
       const environment = await space.getEnvironment('master' || 'master')
-      const entries = await environment.getEntries();
+      const entries = await environment.getEntries('genericCT');
       console.log("entries",entries)
-      const entry = await environment.createEntry('genericCT', {
+
+      // environment.createEntryWithId('<content_type_id>', '<entry_id>',
+      // const entry = await environment.createEntry('genericCT', {
+
+      const entry = await environment.createEntryWithId('genericCT', 'jhfew6fr', {
         fields: {
+          title: {
+            "en-US": "testname"
+          },
           game: {
-            "en-US": {"test": "company"}
+            "en-US": {test: "company"}
           },
         }
       })
   
       // Send Email
   console.log('Hello World',entry)
-      return 1
+      return true
     } catch (error) {
       console.log(error)
       return false
@@ -34,20 +41,14 @@ export default function CreateEntryTest() {
   }  
   
 
- 
-console.log("hi");
 POST()
 console.log("contentful.createEntry")
 
-  // const retVal = createPost(person);
-// console.log(retVal)
   return (
 
     <p>Hi there</p>
 
   )
 
- 
-  
 
 }
