@@ -53,15 +53,15 @@ export default function GameLandingPage() {
   }
 else{
   return (
-<>
+
+      <>
         <br/>
-          <p key={game.fields.game.id}>{game.fields.game.id}</p>
-          <p key={game.fields.game.name}>{game.fields.game.name}</p>
-          <div className="mainImage">
+          <h1 key={game.fields.game.name}>{game.fields.game.name}</h1>
+          <div key="mainImage" className="mainImage">
             <img key={game.fields.game.cover} src={game.fields.game.cover.replace('thumb', '1080p')} />
           </div>
-          <div className="screenshots">
-          {game.fields.game.screenshots?.map((s)=> <div><img key={s.url} src={s.url.replace('thumb', '1080p')} /></div>)}
+          <div className="screenshots row">
+              {game.fields.game.screenshots?.map((s)=> <div key={crypto.randomUUID()} className="col-lg-3 col-md-4"><img key={s.url} src={s.url.replace('thumb', '1080p')} /></div>)}
           </div>
           <p key={myDate.toISOString().substring(0,10)}>Release: {myDate.toISOString().substring(0,10)}</p>
           <br/>

@@ -44,11 +44,10 @@ function Home(props) {
     return (
         <div className="main">
           <br />
-          &nbsp;&nbsp;<button onClick={
+          &nbsp;&nbsp;<button className={toggles.name?'sortDown':'sortUp'} onClick={
             (e)=>{
               setToggles({...toggles, name:!toggles.name})
               const items = games.items;
-              console.log("items",items );
               const gamesItemsSorted = games.items.toSorted((a, b)=>{
                 const nameA = a.fields.title.toUpperCase(); // ignore upper and lowercase
                 const nameB = b.fields.title.toUpperCase(); // ignore upper and lowercase
@@ -60,11 +59,10 @@ function Home(props) {
             
             }
           }>Name</button>&nbsp;&nbsp;&nbsp;
-          <button onClick={
+          <button className={toggles.date?'sortDown':'sortUp'} onClick={
             (e)=>{
               setToggles({...toggles, date:!toggles.date})
               const items = games.items;
-              console.log("items",items );
               const gamesItemsSorted = games.items.toSorted((a, b)=>{
                 const nameA = a.fields.game.first_release_date; // ignore upper and lowercase
                 const nameB = b.fields.game.first_release_date; // ignore upper and lowercase
@@ -73,11 +71,10 @@ function Home(props) {
                 })
               setGames({...games, items: gamesItemsSorted})
             }
-          }>Date</button>&nbsp;&nbsp;&nbsp;<button onClick={
+          }>Date</button>&nbsp;&nbsp;&nbsp;<button className={toggles.rating?'sortDown':'sortUp'} onClick={
             (e)=>{
               setToggles({...toggles, rating:!toggles.rating})
               const items = games.items;
-              console.log("items",items );
               const gamesItemsSorted = games.items.toSorted((a, b)=>{
                 const nameA = a.fields.game.total_rating; // ignore upper and lowercase
                 const nameB = b.fields.game.total_rating; // ignore upper and lowercase

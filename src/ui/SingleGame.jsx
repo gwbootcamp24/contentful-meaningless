@@ -10,7 +10,7 @@ export default function SingleGame({game}) {
 <>
           
 
-    <div className="col-md-4 col-sm-6 col-xs-12">
+    <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 			<div className="card">
 				<div className="cover item-a" style={{backgroundImage: `url(${game.fields.game.cover.replace('thumb', 'cover_big')})`}}>
 					<h1>{game.fields.game.name}</h1>
