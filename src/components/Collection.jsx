@@ -26,7 +26,6 @@ function Collection() {
   }
   `
   const [error, loading, data] = useContentful(query);
-  console.log(data&&data.data );
   if (error) {
     return <p>Something went wrong</p>;
   }
@@ -56,7 +55,5 @@ export default Collection;
  
   // const fetchRonQuoteNow = async () => {
   //   const response = await fetchContentfulTest();
-  //   console.log("response", response.data);
   //   setCurrentQuote(response.data);
   // };
-  // console.log("currentQuote", currentQuote);

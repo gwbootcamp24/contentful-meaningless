@@ -48,11 +48,10 @@ export function useTwitchAPI(query) {
           'Client-ID': '5azs5nrj0o6l1qwezsjj147q3g9h06',
           'Authorization': 'Bearer fhzb0aha100e1lylywywbe5585ehe1',
         },
-        body: "fields *, url, cover;where rating > 75; limit 5;"
+        body: "fields id,name,total_rating,summary,cover,storyline,first_release_date,artworks,game_modes,genres,involved_companies,platforms,screenshots,slug,themes,url,videos,websites;where total_rating > 86 & platforms=(6) & genres=(2,4,5,10,11,12,13,14,16) & first_release_date < 1710184341 & first_release_date > 1268334741;offset 12; sort genres asc; limit 14;"
     })
     if (!res.ok) throw new Error(res.statusText);
     const data = await res.json();
-    console.log(data);
     setData(data);
     setLoading(false);
     } catch (error) {
@@ -102,13 +101,8 @@ export async function useTwitchEndpoint(endpoint, body) {
     }
 
   }
-  
   const genres = await fetchTwitchEndpoint(endpoint, body)
 
-  // useEffect(() => {
-  //   fetchTwitchEndpoint(endpoint, body)
-  // }, [])
-  console.log("ggenres",genres)
 
   return  genres;
 
