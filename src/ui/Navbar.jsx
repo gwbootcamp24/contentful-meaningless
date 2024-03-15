@@ -10,12 +10,10 @@ function Navbar({gameCategories}) {
 
             {gameCategories.map((cat) =>{
               return(
-          <>
             <NavLink key={`nav${cat}`} to={cat}>
               {cat}
           </NavLink>
 
-          </>
           )
             }
 
