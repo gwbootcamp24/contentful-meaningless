@@ -30,7 +30,16 @@ function Home(props) {
               }
                 return acc
               }, [])
-            setGames({...data, items:filteredData});
+
+
+              const sortedFilteredData = filteredData.toSorted((a, b)=>{
+                const nameA = a.fields.title.toUpperCase(); // ignore upper and lowercase
+                const nameB = b.fields.title.toUpperCase(); // ignore upper and lowercase
+
+                return toggles.name ? (nameA < nameB ? 1 : nameA > nameB ? -1 : 0): (nameB < nameA ? 1 : nameB > nameA ? -1 : 0) ;
+                })
+
+            setGames({...data, items:sortedFilteredData});
           });
 
         } catch (error) {
@@ -46,13 +55,13 @@ function Home(props) {
           <br />
           &nbsp;&nbsp;<button className={toggles.name?'sortDown':'sortUp'} onClick={
             (e)=>{
-              setToggles({...toggles, name:!toggles.name})
+              setToggles({name: !toggles.name, date: false, rating: false})
               const items = games.items;
               const gamesItemsSorted = games.items.toSorted((a, b)=>{
                 const nameA = a.fields.title.toUpperCase(); // ignore upper and lowercase
                 const nameB = b.fields.title.toUpperCase(); // ignore upper and lowercase
 
-                return toggles.name ? (nameA < nameB ? -1 : nameA > nameB ? 1 : 0): (nameB < nameA ? -1 : nameB > nameA ? 1 : 0) ;
+                return toggles.name ? (nameA < nameB ? 1 : nameA > nameB ? -1 : 0): (nameB < nameA ? 1 : nameB > nameA ? -1 : 0) ;
                 })
               setGames({...games, items: gamesItemsSorted})
 
@@ -61,7 +70,7 @@ function Home(props) {
           }>Name</button>&nbsp;&nbsp;&nbsp;
           <button className={toggles.date?'sortDown':'sortUp'} onClick={
             (e)=>{
-              setToggles({...toggles, date:!toggles.date})
+              setToggles({name: false, date:!toggles.date, rating: false})
               const items = games.items;
               const gamesItemsSorted = games.items.toSorted((a, b)=>{
                 const nameA = a.fields.game.first_release_date; // ignore upper and lowercase
@@ -73,7 +82,7 @@ function Home(props) {
             }
           }>Date</button>&nbsp;&nbsp;&nbsp;<button className={toggles.rating?'sortDown':'sortUp'} onClick={
             (e)=>{
-              setToggles({...toggles, rating:!toggles.rating})
+              setToggles({name: false, date:false, rating:!toggles.rating})
               const items = games.items;
               const gamesItemsSorted = games.items.toSorted((a, b)=>{
                 const nameA = a.fields.game.total_rating; // ignore upper and lowercase
