@@ -6,6 +6,7 @@ import Navbar from './ui/Navbar'
 import Home from './pages/Home'
 import CreateEntryTest from './pages/CreateEntryTest'
 import GameLandingPage from './pages/GameLandingPage'
+import SearchGame from './pages/SearchGame'
 import './App.css'
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
     <>
 
 
-
+{/* 
     <Navbar gameCategories={gameCategories} />
     <br />
     <Routes>
@@ -36,10 +37,15 @@ function App() {
         
       )}
       <Route path='/games/:gameId' element={<GameLandingPage />} />
-    </Routes>
+    </Routes> */}
 
        {/* <Collection /> */}
        {/* <Twitchtest /> */}
+
+
+       <p>Search</p>
+      <SearchGame />
+
      </>
   )
 }

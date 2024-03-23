@@ -1,5 +1,5 @@
 curl 'https://api.igdb.com/v4/platforms' \
 -d 'fields abbreviation,alternative_name,category,checksum,created_at,generation,name,platform_family,platform_logo,slug,summary,updated_at,url,versions,websites; limit 480; sort id asc;' \
 -H 'Client-ID: 5azs5nrj0o6l1qwezsjj147q3g9h06' \
--H 'Authorization: Bearer fhzb0aha100e1lylywywbe5585ehe1' \
+-H 'Authorization: Bearer 8vcqty7yaeqnu0no7234ihgzktasq0' \
 -H 'Accept: application/json'
