@@ -32,6 +32,8 @@ export default function GameLandingPage() {
   }
 else{
   const test = game[0].screenshots?.map((s)=> {return ({ "src": s?.replace('thumb', '1080p') }) } )
+  myDate = new Date(game[0].first_release_date * 1000);
+
   console.log (test)
   // console.log (game[0].screenshots)
   return (
