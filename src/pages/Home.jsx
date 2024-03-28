@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { createClient } from 'contentful'; 
+// import { createClient } from 'contentful'; 
 import SingleGame from '../ui/SingleGame';
 import { useFetch } from "../hooks/useFetch.js";
 
@@ -9,10 +9,10 @@ function Home(props) {
     const [games, setGames] = useState([]);
     const [toggles, setToggles] = useState({name: false, date: false, rating: false});
 
-    const client = createClient({ 
-      space: `${import.meta.env.VITE_REACT_APP_SPACE_ID}`, 
-      accessToken: `${import.meta.env.VITE_REACT_APP_CDA_TOKEN}`
-    });
+    // const client = createClient({ 
+    //   space: `${import.meta.env.VITE_REACT_APP_SPACE_ID}`, 
+    //   accessToken: `${import.meta.env.VITE_REACT_APP_CDA_TOKEN}`
+    // });
 
     const { cat } = props
     console.log("gamesCategory",games);
@@ -29,6 +29,7 @@ function Home(props) {
         try {
           const res = await fetch(url);
           if (!res.ok) throw new Error("Request failed");
+          console.log("datares", res);
 
           const data = await res.json();
           console.log("datares", data);
@@ -145,7 +146,7 @@ function Home(props) {
 
             {games?.map((game) => (
                 <SingleGame game={game} />
-        ))}
+            ))}
                 </div>
 
         </div>

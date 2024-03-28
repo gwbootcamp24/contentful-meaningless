@@ -302,6 +302,12 @@ button.sortDown::after {
   align-items: flex-start;
 }
 
+@media(min-width: 1025px){
+  .card{
+    height: 30vw;
+  }
+}
+
 
 @media (max-width: 1024px) {
   .row{
