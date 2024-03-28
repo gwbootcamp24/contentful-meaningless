@@ -58,7 +58,6 @@ function Twitchtest() {
             if ( dataSet.cover) {  
 
 
-              console.log("Hi", dataSet)
               const sourceData = ["cover","url"];
               const source = ["covers","url"];
               const endpoint = source[0]
@@ -144,8 +143,6 @@ function Twitchtest() {
                 // const changedField = dataPromise[dataPromise.findIndex(x => x.id === dataSet[sourceData[0]])][source[1]]
 
                 const changedField = dataSet[sourceData[0]]?.map((g)=>{
-                  // console.log("g",g);
-                  // console.log("dataPromise",dataPromise.findIndex(x => x.id === g));
                   if (dataPromise.findIndex(x => x.id === g) == -1)
                   return null
                   else return dataPromise[dataPromise.findIndex(x => x.id === g)]??dataPromise[dataPromise.findIndex(x => x.id === g)][source[1]];
@@ -166,6 +163,7 @@ function Twitchtest() {
 
 
           }
+          
           console.log(modifiedDataHackCover)
 
 
@@ -186,10 +184,6 @@ function Twitchtest() {
                 const myidx = dataPromise.findIndex(x => x.id === dataSet[sourceData[0]]);
                 const changedField = dataPromise[dataPromise.findIndex(x => x.id === dataSet[sourceData[0]])][source[1]]
                 modifiedData = {...dataSet,  [sourceData[0]]: changedField}
-                // console.log("changedField",changedField)
-                // console.log(myidx)
-                // console.log("dataSet",dataSet)
-                // console.log("modifiedData",modifiedData)
 
                 // return modifiedData
 
@@ -232,13 +226,7 @@ function Twitchtest() {
                   return dataPromise[dataPromise.findIndex(x => x.id === g)][source[1]];
                 })
 
-
                 modifiedData = {...modifiedData,  [sourceData[0]]: changedField}
-
-                // console.log("changedField",changedField)
-                // console.log(myidx)
-                // console.log("dataSet",dataSet)
-                // console.log("modifiedData",modifiedData)
 
                 return modifiedData
 
@@ -283,44 +271,3 @@ function Twitchtest() {
 export default Twitchtest;
  
  
- 
-                // const modifiedData = data?.map((d, index)=>{
-                //   console.log("index", index)
-                //   console.log("d", d)
-                //   console.log("dataGenres", dataPromise)
-
-                //   console.log("XXXXXXXXXXXXXXX", d[sourceData[0]] )
-                //   const myidx = dataPromise.findIndex(x => x.id === d[sourceData[0]]);
-                //   console.log(myidx)
-                //   const changedField = dataPromise[dataPromise.findIndex(x => x.id === d[sourceData[0]])][source[1]]
-                    
-                //   // const changedField2 = d["genres"]?.map((g)=>{
-                //   //   return dataPromise[dataPromise.findIndex(x => x.id === g)][source[1]];
-                //   // })
-
-                //   console.log("changedField",changedField)
-
-                //   return({...d, [sourceData[0]]: changedField})
-                // })
-
-
-
-        // const temp =  [["cover","url"]].map(source => {
-
-        //     const endpoint = source[0]
-        //     const body = "fields *; limit 50;"
-        //     const  dataPromise  = useTwitchEndpoint(endpoint, body);
-        //     dataPromise.then((data)=>
-        //     {
-    
-        //       const modifiedData = data?.map((d)=>{
-                
-        //         const changedField = d[source[0]]?.map((g)=>{
-        //           return dataGenres[dataGenres.findIndex(x => x.id === g)][source[1]];
-        //         })
-
-        //         return({...d, [source[0]]: changedField})
-        //       })
-        //       allData = modifiedData;
-        //     })
-        //   });

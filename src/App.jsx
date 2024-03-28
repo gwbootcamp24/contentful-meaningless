@@ -25,7 +25,7 @@ function App() {
     <>
 
 
-{/* 
+
     <Navbar gameCategories={gameCategories} />
     <br />
     <Routes>
@@ -37,14 +37,14 @@ function App() {
         
       )}
       <Route path='/games/:gameId' element={<GameLandingPage />} />
-    </Routes> */}
+    </Routes>
 
        {/* <Collection /> */}
        {/* <Twitchtest /> */}
 
 
-       <p>Search</p>
-      <SearchGame />
+       {/* <p>Search</p> */}
+      {/* <SearchGame /> */}
 
      </>
   )

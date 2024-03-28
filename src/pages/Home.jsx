@@ -95,7 +95,7 @@ function Home(props) {
           }>Rating</button>
           <br />
           <br />
-          <div class="row">
+          <div className="row">
 
             {games?.items?.map((game) => (
                 <SingleGame game={game} />

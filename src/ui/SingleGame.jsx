@@ -16,14 +16,14 @@ export default function SingleGame({game}) {
 					<h1>{game.fields.game.name}</h1>
 					<span className="price">★{Math.round(Number(game.fields.game.total_rating))}</span>
 					<div className="card-back">
-          <Link key={game.sys.id} to={`/games/${game.sys.id}`}>
+          <Link key={game.sys.id} to={`/games/${game.fields.game.id}`}>
 
           <p>Release: {myDate.toISOString().substring(0,10)}</p>
           <br/>
           Genres:
           <ul>{game.fields.game.genres?.map((g) => <li key={g}>{g}</li>)}</ul>
           <br/>
-						<a href="#">View detail</a>
+						<span href="#">View detail</span>
 
             </Link>
 

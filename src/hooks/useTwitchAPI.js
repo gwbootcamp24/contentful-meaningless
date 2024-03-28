@@ -32,7 +32,6 @@ export function useTwitchAPI(query) {
     } else {
 
       const {  VITE_TWITCH_API_BASE_URL, VITE_TWITCH_API_CLIENT_ID, VITE_TWITCH_API_CLIENT_TOKEN} = import.meta.env;
-      console.log("VITE_TWITCH_API_CLIENT_ID",VITE_TWITCH_API_CLIENT_ID);
 
     try {
 
